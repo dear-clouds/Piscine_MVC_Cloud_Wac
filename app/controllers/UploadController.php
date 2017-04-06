@@ -36,23 +36,23 @@ class UploadController extends BaseController {
 			return Redirect::to('')
 			->withErrors($validator)
 			->withInput(Input::except('password'));
-		} 
+		}
 
-		else 
+		else
 		{
 
 			$file = Input::file('file');
 			$destinationPath = 'public/uploads/' . Auth::user()->username;
 			$filename = str_random(20);
 			// $filename = $file->getClientOriginalName();
-			$extension = $file->getClientOriginalExtension(); 
+			$extension = $file->getClientOriginalExtension();
 			$type = $file->getMimeType();
 			$size = Input::file('file')->getSize();
 			$upload_success = Input::file('file')->move($destinationPath, $filename . '.' . $extension);
 
 			Upload::create(['name'       => $filename,
 				'user_id'    => Auth::user()->id,
-				'url'        => 'uloads/' . Auth::user()->username . '/' . $filename . '.' . $extension,
+				'url'        => 'uploads/' . Auth::user()->username . '/' . $filename . '.' . $extension,
 				'size'			=> $size,
 				'description'   => Input::get('description'),
 				'extension'   => $file->getClientOriginalExtension(),
@@ -70,7 +70,7 @@ class UploadController extends BaseController {
 		// 	$destinationPath = 'public/uploads';
 		// 	$filename = str_random(20);
 		// 	// $filename = $file->getClientOriginalName();
-		// 	$extension = $file->getClientOriginalExtension(); 
+		// 	$extension = $file->getClientOriginalExtension();
 		// 	$size = Input::file('file')->getSize();
 		// 	$upload_success = Input::file('file')->move($destinationPath, $filename . '.' . $extension);
 
@@ -98,7 +98,7 @@ class UploadController extends BaseController {
 
 
 
-		// else 
+		// else
 		// {
 		// 	return Redirect::to('')->withErrors('Votre fichier n\'a pas pu être uploadé.');
 		// }
@@ -119,7 +119,7 @@ class UploadController extends BaseController {
 
 		$upload = Upload::find($id);
 
-		if ($upload) 
+		if ($upload)
 		{
 			return View::make('upload.edit')
 			->with('upload', $upload);
@@ -145,8 +145,8 @@ class UploadController extends BaseController {
 			return Redirect::to('upload/' . $id . '/edit')
 			->withErrors($validator)
 			->withInput(Input::except('password'));
-		} 
-		else 
+		}
+		else
 		{
 			$upload = Upload::find($id);
 			$upload->name       	= Input::get('name');
