@@ -1,6 +1,6 @@
 # Piscine_MVC_Cloud_Wac
 
-Application qui permet aux utilisateurs d'héberger images.
+Application qui permet aux utilisateurs d'héberger des images.
 
 
 ## Laravel PHP Framework
